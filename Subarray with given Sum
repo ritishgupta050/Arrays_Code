@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace srd;
+
+class Solution
+{
+public:
+    vector<int> subarraySum(int a[], int n, int s)
+    {
+        vector<int> m;
+        long long current_sum;
+
+        for(int i=0;i<n;i++)
+        {
+            current_sum = a[i];
+
+            for(int j=i+1;j<=n;j++)
+            {
+                if(current_sum == s)
+                {
+                    m.push_back(i+1);
+                    m.push_back(j);
+                    return m;
+                }
+
+                if(current_sum > s)
+                    break;
+
+                current_sum += a[j];
+            }
+        }
+        m.push_back(-1);
+    }
+};
+
+int main()
+ {
+        int n;
+        long long s;
+        cin>>n>>s;
+        int arr[n];
+
+        for(int i=0;i<n;i++)
+        {
+            cin>>arr[i];
+        }
+
+        Solution ob;
+
+        vector<int>res;
+        res = ob.subarraySum(arr, n, s);
+
+        for(int i = 0;i<res.size();i++)
+        {
+            cout<<res[i]<<" ";
+        }
+        cout<<endl;
+
+
+return 0;
+}
+
